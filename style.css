@@ -1,0 +1,378 @@
+/* ========== RESET & GLOBAL ========== */
+* {
+  margin: 0; /* Menghapus margin default semua elemen */
+  padding: 0; /* Menghapus padding default semua elemen */
+  box-sizing: border-box; /* Memastikan width/height mencakup border dan padding */
+}
+body {
+  font-family: 'Segoe UI', sans-serif; /* Font utama */
+  scroll-behavior: smooth; /* Scroll halus ketika klik link anchor */
+  background: #f9f9f9; /* Warna latar default */
+  color: #333; /* Warna teks utama */
+  transition: background 0.3s, color 0.3s; /* Transisi halus saat switch dark mode */
+}
+a {
+  text-decoration: none; /* Hilangkan garis bawah link */
+  color: inherit; /* Warna link mengikuti warna teks induk */
+}
+ul {
+  list-style: none; /* Hilangkan bullet pada list */
+}
+h1, h2, h3 {
+  margin-bottom: 15px; /* Memberi jarak bawah heading */
+}
+
+/* Scroll Progress Bar */
+.progress-bar {
+  position: fixed; /* Tetap di atas saat scroll */
+  top: 0; /* Posisi di bagian atas halaman */
+  left: 0; /* Mulai dari sisi kiri */
+  height: 4px; /* Tinggi progress bar */
+  width: 0; /* Awal width 0%, akan berubah via JS */
+  background: #0077cc; /* Warna progress bar */
+  z-index: 2000; /* Pastikan berada di atas elemen lain */
+}
+
+/* ========== NAVBAR ========== */
+header {
+  width: 100%; /* Lebar penuh */
+  position: fixed; /* Tetap di atas saat scroll */
+  top: 0;
+  left: 0;
+  background: #0077cc; /* Warna navbar */
+  padding: 15px 30px; /* Spasi dalam navbar */
+  z-index: 1000; /* Agar di atas hero section */
+}
+.navbar {
+  display: flex; /* Gunakan flexbox */
+  justify-content: space-between; /* Logo kiri, menu kanan */
+  align-items: center; /* Rata tengah vertikal */
+  color: #fff; /* Warna teks putih */
+}
+.logo {
+  font-size: 24px; /* Ukuran font logo */
+  font-weight: bold; /* Tebal */
+}
+.nav-links {
+  display: flex; /* Menu horizontal */
+  gap: 20px; /* Jarak antar menu */
+}
+.nav-links li a {
+  color: #fff; /* Warna teks link putih */
+  font-weight: 500; /* Semi-bold */
+  transition: color 0.3s; /* Efek hover halus */
+}
+.nav-links li a:hover {
+  color: #f1f1f1; /* Warna lebih terang saat hover */
+}
+.nav-actions {
+  display: flex; /* Posisi tombol di navbar */
+  gap: 10px; /* Jarak antar tombol */
+}
+.toggle-btn,
+.menu-btn {
+  background: none; /* Hilangkan background */
+  border: none; /* Hilangkan border */
+  color: #fff; /* Warna putih */
+  font-size: 22px; /* Ukuran ikon */
+  cursor: pointer; /* Tanda kursor pointer */
+}
+
+/* Responsive Navbar */
+.menu-btn {
+  display: none; /* Tombol menu disembunyikan di desktop */
+}
+@media(max-width: 768px) {
+  .nav-links {
+    display: none; /* Hilangkan menu default di mobile */
+    flex-direction: column; /* Menu jadi vertikal */
+    background: #0077cc; /* Background menu */
+    position: absolute; /* Posisi mengambang */
+    top: 60px; /* Turun sedikit dari navbar */
+    right: 0; /* Muncul dari kanan */
+    padding: 20px; /* Spasi di dalam menu */
+    width: 200px; /* Lebar menu */
+  }
+  .nav-links.active {
+    display: flex; /* Tampilkan menu saat active */
+  }
+  .menu-btn {
+    display: block; /* Tampilkan tombol menu di mobile */
+  }
+}
+
+/* ========== HERO SECTION ========== */
+.hero {
+  display: flex; /* Layout 2 kolom */
+  justify-content: space-between; /* Konten kiri, gambar kanan */
+  align-items: center; /* Vertikal rata tengah */
+  padding: 120px 30px 80px; /* Spasi atas-bawah */
+  min-height: 100vh; /* Tinggi minimal layar penuh */
+  background: linear-gradient(to right, #83a4d4, #b6fbff); /* Background gradasi */
+  gap: 40px; /* Jarak antar konten */
+}
+.hero-content h1 {
+  font-size: 48px; /* Ukuran judul utama */
+}
+.hero-content h1 span {
+  color: #0077cc; /* Warna aksen pada nama */
+}
+.hero-content h2 {
+  color: #555; /* Warna teks deskripsi */
+  font-size: 24px; /* Ukuran font subjudul */
+  margin-bottom: 20px; /* Jarak bawah */
+}
+.hero-img {
+  width: 280px; /* Ukuran gambar profil */
+  border-radius: 50%; /* Membuat lingkaran */
+  border: 6px solid #fff; /* Border putih */
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2); /* Efek bayangan */
+  margin: 130px;
+}
+.button,
+.button-outline {
+  padding: 12px 24px; /* Ukuran tombol */
+  margin-right: 10px; /* Jarak antar tombol */
+  border-radius: 6px; /* Sudut melengkung */
+  font-weight: bold; /* Tulisan tebal */
+  transition: 0.3s; /* Animasi hover halus */
+}
+.button {
+  background: #0077cc; /* Warna utama */
+  color: #fff; /* Teks putih */
+}
+.button:hover {
+  background: #005fa3; /* Warna lebih gelap saat hover */
+}
+.button-outline {
+  border: 2px solid #0077cc; /* Border biru */
+  color: #0077cc; /* Warna teks biru */
+  background: transparent; /* Latar transparan */
+}
+.button-outline:hover {
+  background: #0077cc; /* Latar biru saat hover */
+  color: #fff; /* Teks putih saat hover */
+}
+
+/* ========== SECTIONS ========== */
+section {
+  padding: 80px 20px; /* Spasi atas-bawah section */
+  max-width: 1100px; /* Lebar maksimal konten */
+  margin: auto; /* Tengah halaman */
+  text-align: center; /* Teks rata tengah */
+}
+h2 {
+  color: #0077cc; /* Warna judul section */
+  font-size: 28px; /* Ukuran judul */
+  margin-bottom: 20px; /* Jarak bawah */
+}
+
+/* ========== SKILLS ========== */
+.skills-grid {
+  display: grid; /* Grid layout */
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Kolom dinamis */
+  gap: 20px; /* Jarak antar item */
+}
+.skill-card {
+  background: #fff; /* Latar putih */
+  padding: 20px; /* Spasi dalam kartu */
+  border-radius: 10px; /* Sudut melengkung */
+  box-shadow: 0 6px 12px rgba(0,0,0,0.1); /* Efek bayangan */
+  font-weight: bold; /* Teks tebal */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px; /* Jarak antar konten */
+  transition: transform 0.3s, box-shadow 0.3s; /* Efek animasi hover */
+}
+.skill-card:hover {
+  transform: scale(1.05) rotate(-1deg); /* Zoom + rotasi saat hover */
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2); /* Bayangan lebih tebal */
+}
+.skill-card i {
+  font-size: 32px; /* Ukuran ikon skill */
+  color: #0077cc; /* Warna ikon */
+}
+
+/* ========== PORTFOLIO ========== */
+.filter-buttons {
+  margin-bottom: 20px; /* Jarak tombol filter */
+}
+.filter-buttons button {
+  padding: 8px 16px; /* Ukuran tombol filter */
+  margin: 0 5px; /* Jarak antar tombol */
+  border-radius: 6px; /* Sudut melengkung */
+  border: none; /* Hilangkan border default */
+  background: #0077cc; /* Warna tombol */
+  color: #fff; /* Warna teks */
+  font-weight: bold; /* Teks tebal */
+  cursor: pointer; /* Pointer saat hover */
+  transition: 0.3s; /* Animasi hover */
+}
+.filter-buttons button:hover,
+.filter-buttons button.active {
+  background: #005fa3; /* Warna lebih gelap saat hover/aktif */
+}
+.portfolio-grid {
+  display: grid; /* Grid layout */
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive kolom */
+  gap: 20px; /* Jarak antar kartu */
+}
+.card {
+  background: #fff; /* Latar kartu */
+  padding: 15px; /* Spasi dalam kartu */
+  border-radius: 10px; /* Sudut melengkung */
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1); /* Efek bayangan */
+  cursor: pointer; /* Pointer saat hover */
+  transition: transform 0.3s; /* Animasi hover */
+}
+.card img {
+  width: 100%; /* Gambar full width */
+  border-radius: 8px; /* Sudut gambar melengkung */
+  margin-bottom: 10px; /* Jarak bawah gambar */
+}
+.card:hover {
+  transform: translateY(-5px); /* Geser ke atas saat hover */
+}
+
+/* Modal */
+.modal {
+  display: none; /* Disembunyikan default */
+  position: fixed; /* Tetap di layar */
+  top: 0; left: 0; /* Posisi di pojok kiri atas */
+  width: 100%; height: 100%; /* Full layar */
+  background: rgba(0,0,0,0.8); /* Overlay gelap */
+  justify-content: center; /* Konten tengah horizontal */
+  align-items: center; /* Konten tengah vertikal */
+  z-index: 3000; /* Di atas elemen lain */
+}
+.modal-content {
+  background: #fff; /* Latar konten modal */
+  padding: 20px; /* Spasi dalam modal */
+  border-radius: 8px; /* Sudut melengkung */
+  width: 80%; /* Lebar modal */
+  max-width: 700px; /* Batas maksimal */
+  position: relative; /* Untuk posisi tombol close */
+}
+.close-btn {
+  position: absolute; /* Tombol close mengambang */
+  top: 10px; right: 20px; /* Pojok kanan atas */
+  font-size: 28px; /* Ukuran tombol close */
+  cursor: pointer; /* Pointer saat hover */
+}
+
+/* Contact */
+form {
+  display: flex; /* Layout form */
+  flex-direction: column; /* Kolom */
+  gap: 10px; /* Jarak antar input */
+  max-width: 400px; /* Lebar form */
+  margin: auto; /* Tengah halaman */
+}
+input, textarea {
+  padding: 10px; /* Spasi dalam input */
+  border-radius: 6px; /* Sudut melengkung */
+  border: 1px solid #ccc; /* Border abu */
+}
+textarea {
+  resize: none; /* Tidak bisa resize */
+  height: 100px; /* Tinggi area pesan */
+}
+
+/* Footer */
+footer {
+  text-align: center; /* Teks tengah */
+  padding: 15px; /* Spasi */
+  background: #0077cc; /* Warna footer */
+  color: #fff; /* Warna teks putih */
+}
+
+/* Dark Mode */
+body.dark-mode {
+  background: #121212; /* Latar gelap */
+  color: #f1f1f1; /* Teks terang */
+}
+body.dark-mode header {
+  background: #222; /* Navbar lebih gelap */
+}
+body.dark-mode .hero {
+  background: linear-gradient(to right, #1f1f1f, #2b2b2b); /* Hero gelap */
+}
+body.dark-mode .card,
+body.dark-mode .skill-card,
+body.dark-mode .modal-content {
+  background: #1e1e1e; /* Komponen gelap */
+  color: #fff; /* Teks putih */
+}
+
+/* ========== RESPONSIVENESS ========== */
+
+/* Mobile (max 576px) */
+@media (max-width: 576px) {
+  .hero {
+    flex-direction: column; /* Stack vertikal */
+    text-align: center; /* Teks rata tengah */
+    padding: 100px 20px 50px; /* Kurangi padding */
+  }
+  .hero-img {
+    width: 180px; /* Gambar lebih kecil */
+    margin-top: 6px; /* Spasi atas */
+  }
+  .hero-content h1 {
+    font-size: 28px; /* Judul kecil */
+  }
+  .hero-content h2 {
+    font-size: 18px; /* Subjudul kecil */
+  }
+  .button, .button-outline {
+    padding: 10px 18px; /* Tombol kecil */
+    font-size: 14px; /* Teks kecil */
+  }
+  .skills-grid, .portfolio-grid {
+    grid-template-columns: 1fr; /* Satu kolom */
+  }
+  .nav-links {
+    width: 100%; /* Menu penuh */
+    text-align: left; /* Teks kiri */
+  }
+}
+
+/* Tablet (min 577px and max 1024px) */
+@media (min-width: 577px) and (max-width: 1024px) {
+  .hero {
+    flex-direction: column; /* Stack vertikal */
+    padding: 100px 40px 50px; /* Spasi sedang */
+    text-align: center; /* Teks tengah */
+  }
+  .hero-content h1 {
+    font-size: 36px; /* Judul sedang */
+  }
+  .skills-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 kolom */
+  }
+  .portfolio-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 kolom */
+  }
+}
+
+/* Desktop (min 1025px) */
+@media (min-width: 1025px) {
+  .hero {
+    flex-direction: row; /* 2 kolom */
+    text-align: left; /* Teks kiri */
+    padding: 150px 80px; /* Spasi besar */
+  }
+  .skills-grid {
+    grid-template-columns: repeat(3, 1fr); /* 3 kolom */
+  }
+  .portfolio-grid {
+    grid-template-columns: repeat(3, 1fr); /* 3 kolom */
+  }
+}
+
+.nav-links {
+  transition: transform 0.3s ease; /* Animasi menu */
+}
+.nav-links.active {
+  transform: translateX(0); /* Efek saat aktif */
+}

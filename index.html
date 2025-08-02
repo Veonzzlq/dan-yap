@@ -1,0 +1,147 @@
+<!DOCTYPE html> <!-- Menentukan bahwa dokumen ini adalah HTML5 -->
+<html lang="id"> <!-- Bahasa dokumen ditetapkan ke Indonesia -->
+<head>
+  <meta charset="UTF-8" /> <!-- Karakter encoding UTF-8 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" /> <!-- Membuat tampilan responsif di semua perangkat -->
+  <title>Portfolio Rizal</title> <!-- Judul halaman yang tampil di tab browser -->
+
+  <!-- CSS Utama -->
+  <link rel="stylesheet" href="style.css" /> <!-- File CSS custom -->
+  
+  <!-- AOS (Animate On Scroll) CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" /> <!-- Library untuk animasi scroll -->
+  
+  <!-- Swiper CSS (untuk slider di portfolio & testimonial) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
+
+  <!-- Typed.js (Animasi teks ketik di Hero section) -->
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+  
+  <!-- GSAP (Animasi profesional untuk elemen halaman) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+</head>
+<body>
+  <!-- Progress Bar -->
+  <div class="progress-bar" id="progress-bar"></div> <!-- Indikator progres scroll di atas halaman -->
+
+  <!-- Navbar -->
+  <header>
+    <nav class="navbar">
+      <h2 class="logo">Bintang</h2> <!-- Logo/Brand Name -->
+      <ul class="nav-links" id="nav-menu"> <!-- Menu navigasi -->
+        <li><a href="#home">Home</a></li> <!-- Link ke Hero -->
+        <li><a href="#about">About</a></li> <!-- Link ke Tentang Saya -->
+        <li><a href="#skills">Skills</a></li> <!-- Link ke Keahlian -->
+        <li><a href="#portfolio">Portfolio</a></li> <!-- Link ke Portofolio -->
+        <li><a href="#testimonials">Testimonials</a></li> <!-- Link ke Testimoni -->
+        <li><a href="#contact">Contact</a></li> <!-- Link ke Hubungi Saya -->
+      </ul>
+      <div class="nav-actions"> <!-- Aksi di navbar -->
+        <button id="theme-toggle" class="toggle-btn">🌙</button> <!-- Tombol ganti mode gelap -->
+        <button id="menu-toggle" class="menu-btn">☰</button> <!-- Tombol menu hamburger untuk mobile -->
+      </div>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="home" class="hero">
+    <div class="hero-content">
+      <h1>Hi, Saya <span>Star</span></h1> <!-- Judul besar -->
+      <h2><span id="typed-text"></span></h2> <!-- Animasi teks akan muncul di sini -->
+      <a href="#portfolio" class="button">Lihat Portofolio</a> <!-- Tombol menuju portfolio -->
+    </div>
+    <img src="https://picsum.photos/300" alt="Profile" class="hero-img" /> <!-- Foto profil -->
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="about" data-aos="fade-up"> <!-- data-aos = animasi AOS -->
+    <h2>Tentang Saya</h2>
+    <p>Saya seorang Web Developer dan IT Infrastructure Enthusiast dengan pengalaman mengembangkan aplikasi berbasis Laravel, React, dan manajemen jaringan. Fokus saya adalah membangun sistem efisien dan modern.</p>
+  </section>
+
+  <!-- Skills Section -->
+  <section id="skills" class="skills" data-aos="fade-up">
+    <h2>Keahlian</h2>
+    <div class="skills-grid">
+      <!-- Kartu skill dengan ikon -->
+      <div class="skill-card"><i class="fab fa-laravel"></i> Laravel</div>
+      <div class="skill-card"><i class="fab fa-react"></i> React</div>
+      <div class="skill-card"><i class="fab fa-php"></i> PHP</div>
+      <div class="skill-card"><i class="fas fa-database"></i> MySQL</div>
+      <div class="skill-card"><i class="fas fa-network-wired"></i> Networking</div>
+      <div class="skill-card"><i class="fab fa-docker"></i> Docker</div>
+    </div>
+  </section>
+
+  <!-- Portfolio Section -->
+  <section id="portfolio" class="portfolio" data-aos="fade-up">
+    <h2>Portofolio</h2>
+    <!-- Tombol filter kategori -->
+    <div class="filter-buttons">
+      <button class="filter active" data-filter="all">All</button>
+      <button class="filter" data-filter="web">Web</button>
+      <button class="filter" data-filter="mobile">Mobile</button>
+    </div>
+    <!-- Grid portofolio -->
+    <div class="portfolio-grid">
+      <div class="card" data-category="web" onclick="openModal(1)"><img src="https://picsum.photos/300/201" /><h3>SIMRS</h3></div>
+      <div class="card" data-category="mobile" onclick="openModal(2)"><img src="https://picsum.photos/300/202" /><h3>Aplikasi Absensi</h3></div>
+      <div class="card" data-category="web" onclick="openModal(3)"><img src="https://picsum.photos/300/203" /><h3>Company Website</h3></div>
+    </div>
+  </section>
+
+  <!-- Modal Portfolio -->
+  <div id="portfolio-modal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeModal()">&times;</span> <!-- Tombol close modal -->
+      <!-- Swiper slider untuk gambar project -->
+      <div class="swiper mySwiper">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide"><img src="https://picsum.photos/500/300?1" /></div>
+          <div class="swiper-slide"><img src="https://picsum.photos/500/300?2" /></div>
+          <div class="swiper-slide"><img src="https://picsum.photos/500/300?3" /></div>
+        </div>
+        <div class="swiper-pagination"></div>
+      </div>
+      <h3 id="modal-title">Project Title</h3> <!-- Judul project di modal -->
+      <p id="modal-desc">Deskripsi project akan tampil di sini.</p> <!-- Deskripsi project -->
+    </div>
+  </div>
+
+  <!-- Testimonials Section -->
+  <section id="testimonials" class="testimonials" data-aos="fade-up">
+    <h2>Apa Kata Mereka</h2>
+    <!-- Swiper untuk testimoni -->
+    <div class="swiper testimonialSwiper">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">"Rizal bekerja sangat cepat dan hasilnya memuaskan!"</div>
+        <div class="swiper-slide">"Profesional dan komunikatif dalam setiap proyek."</div>
+      </div>
+      <div class="swiper-pagination"></div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="contact" data-aos="fade-up">
+    <h2>Hubungi Saya</h2>
+    <!-- Form kontak -->
+    <form id="contact-form">
+      <input type="text" name="name" placeholder="Nama" required />
+      <input type="email" name="email" placeholder="Email" required />
+      <textarea name="message" placeholder="Pesan" required></textarea>
+      <button type="submit" class="button">Kirim</button>
+    </form>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Mohammad Rizal Abidin</p> <!-- Hak cipta -->
+  </footer>
+
+  <!-- JS Library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script> <!-- Library animasi scroll -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script> <!-- Slider library -->
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script> <!-- Font Awesome ikon -->
+  <script src="script.js"></script> <!-- File JS custom -->
+</body>
+</html>
